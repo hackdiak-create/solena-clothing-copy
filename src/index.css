@@ -5,7 +5,7 @@
 /* ========================================================================= */
 /* THEME NOIR HAUTE COUTURE SOLENA (SITE DE RÉFÉRENCE)                      */
 /* ========================================================================= */
-:root {
+.solena-storefront {
   --color-solena-bg: #000000;
   --color-solena-text: #F3F3F6;
   --color-solena-surface: #101015;
@@ -15,104 +15,104 @@
   --color-solena-border: rgba(255, 255, 255, 0.1);
 }
 
-body {
+.solena-storefront {
   background-color: #000000 !important;
   color: #F3F3F6 !important;
 }
 
 /* 1. Surfaces et conteneurs clairs convertis en noir luxe */
-.bg-\[\#FBF3F1\],
-.bg-\[\#FBF3F1\]\/40,
-.bg-\[\#FBF3F1\]\/50,
-.bg-\[\#FBF3F1\]\/60,
-.bg-\[\#FBF3F1\]\/70,
-.bg-\[\#FBF3F1\]\/80,
-.bg-\[\#FBF3F1\]\/95 {
+.solena-storefront .bg-\[\#FBF3F1\],
+.solena-storefront .bg-\[\#FBF3F1\]\/40,
+.solena-storefront .bg-\[\#FBF3F1\]\/50,
+.solena-storefront .bg-\[\#FBF3F1\]\/60,
+.solena-storefront .bg-\[\#FBF3F1\]\/70,
+.solena-storefront .bg-\[\#FBF3F1\]\/80,
+.solena-storefront .bg-\[\#FBF3F1\]\/95 {
   background-color: #09090D !important;
 }
 
 /* 2. Cartes, fenêtres modales et tiroir panier */
-.bg-white,
-.bg-white\/70,
-.bg-white\/80,
-.bg-white\/90,
-.bg-white\/95,
-.bg-white\/98 {
+.solena-storefront .bg-white,
+.solena-storefront .bg-white\/70,
+.solena-storefront .bg-white\/80,
+.solena-storefront .bg-white\/90,
+.solena-storefront .bg-white\/95,
+.solena-storefront .bg-white\/98 {
   background-color: #121217 !important;
   color: #FFFFFF !important;
 }
 
 /* 3. Textes et titres adaptés pour contraste optimal sur fond noir */
-.text-\[\#0D0D0D\] {
+.solena-storefront .text-\[\#0D0D0D\] {
   color: #FFFFFF !important;
 }
 
-.text-\[\#2B2126\] {
+.solena-storefront .text-\[\#2B2126\] {
   color: #E2E2E8 !important;
 }
 
-.text-\[\#2B2126\]\/80,
-.text-\[\#2B2126\]\/75,
-.text-\[\#2B2126\]\/70,
-.text-\[\#2B2126\]\/60 {
+.solena-storefront .text-\[\#2B2126\]\/80,
+.solena-storefront .text-\[\#2B2126\]\/75,
+.solena-storefront .text-\[\#2B2126\]\/70,
+.solena-storefront .text-\[\#2B2126\]\/60 {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
-.text-\[\#2B2126\]\/50,
-.text-\[\#2B2126\]\/40 {
+.solena-storefront .text-\[\#2B2126\]\/50,
+.solena-storefront .text-\[\#2B2126\]\/40 {
   color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.text-\[\#7C3F59\] {
+.solena-storefront .text-\[\#7C3F59\] {
   color: #E598AF !important;
 }
 
 /* 4. Bordures douces et raffinées */
-.border-\[\#C96A87\]\/10,
-.border-\[\#C96A87\]\/15,
-.border-\[\#C96A87\]\/20,
-.border-\[\#C96A87\]\/25,
-.border-\[\#C96A87\]\/30,
-.border-\[\#C96A87\]\/40 {
+.solena-storefront .border-\[\#C96A87\]\/10,
+.solena-storefront .border-\[\#C96A87\]\/15,
+.solena-storefront .border-\[\#C96A87\]\/20,
+.solena-storefront .border-\[\#C96A87\]\/25,
+.solena-storefront .border-\[\#C96A87\]\/30,
+.solena-storefront .border-\[\#C96A87\]\/40 {
   border-color: rgba(201, 106, 135, 0.25) !important;
 }
 
 /* 5. Éléments de formulaire sombres & épurés */
-input:not([type="checkbox"]):not([type="radio"]),
-select,
-textarea {
+.solena-storefront input:not([type="checkbox"]):not([type="radio"]),
+.solena-storefront select,
+.solena-storefront textarea {
   background-color: #16161E !important;
   color: #FFFFFF !important;
   border-color: rgba(201, 106, 135, 0.3) !important;
 }
 
-input::placeholder,
-textarea::placeholder {
+.solena-storefront input::placeholder,
+.solena-storefront textarea::placeholder {
   color: rgba(255, 255, 255, 0.38) !important;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+.solena-storefront input:focus,
+.solena-storefront select:focus,
+.solena-storefront textarea:focus {
   background-color: #1C1C26 !important;
   border-color: #C96A87 !important;
   box-shadow: 0 0 0 2px rgba(201, 106, 135, 0.25) !important;
 }
 
 /* 6. Badges sombres sur fond noir */
-.bg-\[\#0D0D0D\] {
+.solena-storefront .bg-\[\#0D0D0D\] {
   background-color: #1A1A22 !important;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* 7. Liens de navigation et états au survol */
-.hover\:bg-\[\#FBF3F1\]\/80:hover,
-.hover\:bg-\[\#C96A87\]\/15:hover {
+.solena-storefront .hover\:bg-\[\#FBF3F1\]\/80:hover,
+.solena-storefront .hover\:bg-\[\#C96A87\]\/15:hover {
   background-color: rgba(201, 106, 135, 0.18) !important;
 }
 
 /* 8. Sélecteur de texte haute couture */
-::selection {
+.solena-storefront ::selection {
   background-color: rgba(201, 106, 135, 0.4) !important;
   color: #FFFFFF !important;
 }
@@ -126,7 +126,7 @@ textarea:focus {
 
 /* Fenêtre à zone défilante unique (fiche produit, confirmation de commande, */
 /* connexion gérante, ajout/modification de produit) */
-.solena-modal-scrollable {
+.solena-storefront .solena-modal-scrollable {
   max-height: 92vh;
   max-height: 92dvh;
   overflow-y: auto;
@@ -136,7 +136,7 @@ textarea:focus {
 
 /* Fenêtre avec un en-tête fixe et un corps de formulaire défilant à part */
 /* (formulaire de livraison / paiement) */
-.solena-modal-card {
+.solena-storefront .solena-modal-card {
   max-height: 92vh;
   max-height: 92dvh;
   display: flex;
@@ -144,7 +144,7 @@ textarea:focus {
   overflow: hidden;
 }
 
-.solena-modal-body {
+.solena-storefront .solena-modal-body {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;

@@ -1,0 +1,133 @@
+@layer components {
+  .solena-admin {
+    --admin-bg: #0B0A0F;
+    --admin-surface: #141318;
+    --admin-raised: #1C1A22;
+    --admin-border: rgba(255, 255, 255, 0.08);
+    --admin-border-hover: rgba(255, 255, 255, 0.16);
+    --admin-text: #F5F2F4;
+    --admin-muted: #A9A2AD;
+    --admin-accent: #D4748F;
+    --admin-on-accent: #1A0A10;
+    --admin-accent-soft: rgba(212, 116, 143, 0.14);
+    --admin-danger: #F87171;
+    min-height: 100vh;
+    background: var(--admin-bg);
+    color: var(--admin-text);
+    font-size: 14px;
+  }
+  .solena-admin .admin-card,
+  .solena-admin .admin-login-card {
+    border-color: var(--admin-border);
+    border-radius: 16px;
+    background: var(--admin-surface);
+    color: var(--admin-text);
+  }
+  .solena-admin .admin-card h2 { margin-bottom: 20px; font-size: 18px; line-height: 1.35; }
+  .solena-admin .admin-login-card { width: min(100%, 440px); padding: 32px; box-shadow: 0 24px 70px rgba(0,0,0,.35); }
+  .solena-admin .admin-control,
+  .solena-admin input:not([type="checkbox"]):not([type="file"]),
+  .solena-admin textarea,
+  .solena-admin select {
+    min-height: 44px;
+    border: 1px solid var(--admin-border);
+    border-radius: 10px;
+    background-color: var(--admin-raised);
+    color: var(--admin-text);
+    transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  }
+  .solena-admin textarea { min-height: 96px; }
+  .solena-admin .admin-field { color: var(--admin-muted); font-size: 13px; }
+  .solena-admin .admin-control:focus,
+  .solena-admin input:focus,
+  .solena-admin textarea:focus,
+  .solena-admin select:focus,
+  .solena-admin button:focus-visible,
+  .solena-admin a:focus-visible { outline: 2px solid var(--admin-accent); outline-offset: 2px; }
+  .solena-admin input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--admin-accent); }
+  .solena-admin button,
+  .solena-admin a { transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease; }
+  .solena-admin button { min-height: 40px; }
+  .solena-admin .admin-nav-button { display: inline-flex; align-items: center; gap: 8px; color: var(--admin-muted); }
+  .solena-admin .admin-nav-button:hover,
+  .solena-admin .admin-nav-button.is-active { background: var(--admin-accent-soft); color: var(--admin-accent); }
+  .solena-admin .admin-nav-icon { display: inline-flex; width: 18px; height: 18px; align-items: center; justify-content: center; }
+  .solena-admin .admin-nav-icon svg { width: 18px; height: 18px; }
+  .solena-admin article { border-color: var(--admin-border); border-radius: 16px; background: var(--admin-raised); }
+  .solena-admin article p,
+  .solena-admin main > div > p,
+  .solena-admin footer { color: var(--admin-muted); }
+  .solena-admin label { color: var(--admin-text); }
+  .solena-admin input::placeholder,
+  .solena-admin textarea::placeholder { color: var(--admin-muted); opacity: .8; }
+  .solena-admin .admin-login a,
+  .solena-admin .admin-login p { color: var(--admin-muted); }
+  .solena-admin .admin-login h1 { color: var(--admin-text); font-size: 30px; }
+  .solena-admin .admin-login button,
+  .solena-admin button.bg-\[\#C96A87\],
+  .solena-admin button.bg-\[\#7C3F59\] { background: var(--admin-accent); color: var(--admin-on-accent); border-radius: 10px; font-weight: 700; }
+  .solena-admin .admin-login button:hover,
+  .solena-admin button.bg-\[\#C96A87\]:hover,
+  .solena-admin button.bg-\[\#7C3F59\]:hover { background: #e08ba4; }
+  .solena-admin button[class*="border-red"] { border-color: rgba(248,113,113,.28); color: var(--admin-danger); background: transparent; }
+  .solena-admin button[class*="border-red"]:hover { background: rgba(248,113,113,.1); }
+  .solena-admin .admin-card > div > button,
+  .solena-admin .admin-card button:not(.admin-nav-button) { border-radius: 10px; }
+  .solena-admin .admin-card img { object-fit: cover; }
+  .solena-admin [role="alert"] { border-color: rgba(248,113,113,.3); background: rgba(248,113,113,.1); color: #fecaca; }
+  .solena-admin [role="status"] { border-color: var(--admin-border); background: var(--admin-raised); color: var(--admin-text); }
+  .solena-admin .admin-card section { border-color: var(--admin-border); border-radius: 14px; background: var(--admin-raised); }
+  .solena-admin .admin-card section p { color: var(--admin-muted); }
+  .solena-admin .admin-card label:has(input[type="checkbox"]) { min-height: 44px; border-color: var(--admin-border); border-radius: 10px; background: var(--admin-raised); }
+  .solena-admin img { border-radius: 10px; }
+  @media (min-width: 1024px) {
+    .solena-admin .admin-card:has(input[aria-label="Rechercher un produit"]) { position: sticky; top: 20px; align-self: start; }
+    .solena-admin .admin-card:has(input[aria-label="Rechercher un produit"]) > div { max-height: 62vh; }
+  }
+  @media (max-width: 639px) {
+    .solena-admin .admin-login-card { padding: 24px; }
+    .solena-admin .admin-card { padding: 20px; }
+    .solena-admin .admin-nav-button { min-height: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .solena-admin *, .solena-admin *::before, .solena-admin *::after { scroll-behavior: auto; transition-duration: .01ms; }
+  }
+}
+.solena-admin header { border-color: var(--admin-border); background: var(--admin-bg); }
+.solena-admin header a,
+.solena-admin header button:not(.bg-\[\#C96A87\]):not(.bg-\[\#7C3F59\]) { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--admin-border); border-radius: 10px; background: transparent; color: var(--admin-text); }
+.solena-admin nav { border-color: var(--admin-border); background: var(--admin-surface); }
+.solena-admin h1,
+.solena-admin h2,
+.solena-admin h3 { color: var(--admin-text); }
+.solena-admin .admin-card > h2 { font-family: Georgia, serif; }
+.solena-admin main > header p { color: var(--admin-accent); }
+.solena-admin .admin-card input[type="file"] { min-height: 0; }
+.solena-admin .admin-card button:hover { border-color: var(--admin-border-hover); }
+.solena-admin .admin-card button.bg-\[\#7C3F59\],
+.solena-admin .admin-card button.bg-\[\#C96A87\] { border: 1px solid transparent; }
+.solena-admin .admin-login button { min-height: 44px; }
+.solena-admin .admin-card:has(input[aria-label="Rechercher un produit"]) > div button { min-height: 56px; }
+.solena-admin .admin-card:has(input[aria-label="Rechercher un produit"]) > div button:hover { background: var(--admin-accent-soft); }
+.solena-admin .admin-card:has(input[aria-label="Rechercher un produit"]) > div button span span { color: var(--admin-muted); }
+.solena-admin .admin-stat-icon { display: inline-flex; color: var(--admin-muted); }
+.solena-admin .admin-stat-icon svg { width: 20px; height: 20px; }
+.solena-admin .admin-stat-pending .admin-stat-icon,
+.solena-admin .admin-stat-pending .admin-stat-value,
+.solena-admin .admin-stat-pending h2 { color: var(--admin-accent); }
+.solena-admin .admin-shortcut { display: flex; min-height: 64px; align-items: center; gap: 10px; border: 1px solid var(--admin-border); background: var(--admin-raised); color: var(--admin-text); text-align: left; }
+.solena-admin .admin-shortcut > svg:first-child { width: 18px; height: 18px; color: var(--admin-accent); }
+.solena-admin .admin-shortcut > svg:last-child { width: 16px; height: 16px; margin-left: auto; color: var(--admin-muted); }
+.solena-admin .admin-shortcut:hover { border-color: var(--admin-border-hover); background: var(--admin-accent-soft); transform: translateY(-1px); }
+.solena-admin .admin-control,
+.solena-admin input:not([type="checkbox"]):not([type="file"]),
+.solena-admin textarea,
+.solena-admin select { display: block; width: 100%; }
+.solena-admin .admin-field > input,
+.solena-admin .admin-field > textarea,
+.solena-admin .admin-field > select { display: block; width: 100%; }
+@media (max-width: 639px) {
+  .solena-admin .admin-card:has(input[aria-label="Rechercher un produit"]) > div { max-height: none; overflow-y: visible; }
+}
+.solena-admin .admin-login-card { height: fit-content; }
+.solena-admin input:-webkit-autofill { -webkit-text-fill-color: var(--admin-text); box-shadow: 0 0 0 1000px var(--admin-raised) inset; }
