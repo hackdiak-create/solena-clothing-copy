@@ -1016,6 +1016,52 @@ app.post('/api/upload', requireAdmin, async (req: Request, res: Response) => {
   }
 });
 
+// Téléversement public des images de personnalisation client. Le fichier est
+// stocké dans le même espace public que les images produits pour qu'il soit
+// consultable depuis le lien WhatsApp envoyé à la gérante.
+const customerUploadWindows = new Map<string, { count: number; resetAt: number }>();
+app.post('/api/customer-upload', async (req: Request, res: Response) => {
+  try {
+    const ip = (req.get('x-forwarded-for') || req.ip || req.socket.remoteAddress || 'unknown').split(',')[0].trim();
+    const now = Date.now();
+    const windowState = customerUploadWindows.get(ip);
+    if (windowState && windowState.resetAt > now && windowState.count >= 5) {
+      return res.status(429).json({ success: false, error: 'Trop d’images envoyées. Réessaie dans une minute.' });
+    }
+    if (!windowState || windowState.resetAt <= now) customerUploadWindows.set(ip, { count: 1, resetAt: now + 60_000 });
+    else windowState.count += 1;
+
+    const { imageBase64 } = req.body || {};
+    const matches = typeof imageBase64 === 'string' ? imageBase64.match(/^data:(image\/(?:jpeg|png|webp|gif));base64,([A-Za-z0-9+/]+={0,2})$/i) : null;
+    if (!matches) return res.status(415).json({ success: false, error: 'Choisis une image JPEG, PNG, WebP ou GIF.' });
+    const mimeType = matches[1].toLowerCase();
+    const buffer = Buffer.from(matches[2], 'base64');
+    if (!buffer.length || buffer.length > 5 * 1024 * 1024) {
+      return res.status(413).json({ success: false, error: 'Image trop volumineuse. Taille maximale : 5 Mo.' });
+    }
+
+    const ext = mimeType === 'image/png' ? 'png' : mimeType === 'image/webp' ? 'webp' : mimeType === 'image/gif' ? 'gif' : 'jpg';
+    const safeName = `solena_personnalisation_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${ext}`;
+    let publicUrl: string;
+    if (isSupabaseConfigured()) {
+      const uploadResponse = await fetch(`${SUPABASE_URL}/storage/v1/object/product-images/${encodeURIComponent(safeName)}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`, 'apikey': SUPABASE_SERVICE_ROLE_KEY, 'Content-Type': mimeType, 'x-upsert': 'true' },
+        body: buffer
+      });
+      if (!uploadResponse.ok) throw new Error(`Supabase Storage HTTP ${uploadResponse.status}: ${await uploadResponse.text()}`);
+      publicUrl = `${SUPABASE_URL}/storage/v1/object/public/product-images/${encodeURIComponent(safeName)}`;
+    } else {
+      fs.writeFileSync(path.join(UPLOADS_DIR, safeName), buffer);
+      publicUrl = `${getBaseUrl(req)}/uploads/${safeName}`;
+    }
+    return res.status(200).json({ success: true, url: publicUrl });
+  } catch (error: any) {
+    console.error('[Customer Upload Error]:', error);
+    return res.status(500).json({ success: false, error: 'Impossible de téléverser cette image pour le moment.' });
+  }
+});
+
 // Endpoint pour consulter le statut d'une commande
 app.get('/api/orders/:ref', requireAdmin, async (req: Request, res: Response) => {
   const ref = req.params.ref;
